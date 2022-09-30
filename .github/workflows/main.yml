@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./Module
+        working-directory: ./Modules
 
     steps:
       - name: checkout
