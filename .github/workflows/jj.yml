@@ -8,7 +8,7 @@ on:
 env:
   aws-region: us-east-1
   aws_s3_bucket: demo-27
-  tfstate_file: jas.tfstate
+  tfstate_file: new.tfstate
   dynamodb_table: jas-b5
   
 jobs:
