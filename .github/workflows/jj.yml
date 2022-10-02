@@ -1,4 +1,4 @@
-name: assignment
+name: work2
 
 on:
   workflow_dispatch:
