@@ -7,7 +7,7 @@ on:
 
 env:
   aws-region: us-east-1
-  aws_s3_bucket: demo-27
+  aws_s3_bucket: jas1-bucket
   tfstate_file: new.tfstate
   dynamodb_table: jas-b5
   
