@@ -1,52 +1,52 @@
-# name: work3
+name: work3
 
-# on:
-#   workflow_dispatch:
-#   push: 
-#    branches: ["main"]
+on:
+  workflow_dispatch:
+  push: 
+   branches: ["main"]
 
-# env:
-#   aws-region: us-east-1
-#   aws_s3_bucket: jas1-bucket
-#   tfstate_file: new.tfstate
-#   dynamodb_table: jas-b5
+env:
+  aws-region: us-east-1
+  aws_s3_bucket: jas1-bucket
+  tfstate_file: new.tfstate
+  dynamodb_table: jas-b5
   
-# jobs:
-#   terraform1:
-#     name: terraform
-#     runs-on: ubuntu-latest
-#     defaults:
-#       run:
-#         working-directory: ./Modules
+jobs:
+  terraform1:
+    name: terraform
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./Modules
 
-#     steps:
-#       - name: checkout
-#         uses: actions/checkout@v3
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
 
-#       - name: Terraform HasiCorp SetUp
-#         uses: hashicorp/setup-terraform@v2
-#         with:
-#           terraform_version: 1.2.6
+      - name: Terraform HasiCorp SetUp
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.2.6
 
-#       - name: AWS Credentials Configuration
-#         uses: aws-actions/configure-aws-credentials@v1
-#         with:
-#           aws-region: ${{ env.aws-region }}
-#           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-#           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-#           aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
+      - name: AWS Credentials Configuration
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-region: ${{ env.aws-region }}
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
       
-#       - name: terraform init
-#         run: 
-#           terraform init -backend-config="bucket=$aws_s3_bucket" -backend-config="key=$new.tfstate" -backend-config="dynamodb_table=$dynamodb_table"
-#       - name: terraform validate
-#         run: 
-#           terraform validate
+      - name: terraform init
+        run: 
+          terraform init -backend-config="bucket=$aws_s3_bucket" -backend-config="key=$new.tfstate" -backend-config="dynamodb_table=$dynamodb_table"
+      - name: terraform validate
+        run: 
+          terraform validate
 
-#       - name: terraform plan
-#         run: 
-#           terraform plan
+      - name: terraform plan
+        run: 
+          terraform plan
 
-#       - name: terraform apply
-#         run: 
+      - name: terraform apply
+        run: 
           terraform apply -auto-approve
