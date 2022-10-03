@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./Modules./s3
+        working-directory: ./Modules
 
     steps:
       - name: checkout
